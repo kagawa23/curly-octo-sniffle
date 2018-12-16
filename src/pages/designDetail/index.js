@@ -1,0 +1,67 @@
+import Taro, {
+  Component,
+  startFacialRecognitionVerifyAndUploadVideo
+} from "@tarojs/taro";
+import { View, Text, ScrollView, Image, Icon } from "@tarojs/components";
+// import { fetchDesigns } from "../../io/request";
+// import Card from "../../components/designCard";
+import "./style.scss";
+
+export default class Index extends Component {
+  config = {
+    navigationBarTitleText: "案例详情"
+  };
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentWillMount() {
+    console.log(this.$router.params); // 输出 { id: 2, type: 'test' }
+    const {
+      designCover,
+      designName,
+      designerName,
+      avatar,
+      assetId,
+      name: decorationType
+    } = this.$router.params;
+    this.setState({
+      designName,
+      designerName,
+      avatar,
+      assetId,
+      decorationType,
+      designCover
+    });
+  }
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  componentDidShow() {}
+
+  componentDidHide() {}
+
+  render() {
+    const {
+      designName,
+      designerName,
+      avatar,
+      assetId,
+      decorationType,
+      designCover
+    } = this.state;
+    return (
+      <View className='design-detail-header'>
+        <Image className='cover-image' src={designCover} />
+        <View className='decoration-type'>{decorationType}</View>
+        <View className='click-button'>
+          <View className='iconfont icon-Rotate-Camera' />
+          全屋漫游
+        </View>
+      </View>
+    );
+  }
+}

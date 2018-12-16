@@ -1,0 +1,72 @@
+@import '../../variable.scss';
+
+.card {
+  border-radius: 8px;
+  border:1px solid $font-color-shallow;
+  margin-bottom:40px;
+  .card-image {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width:686px;
+    height:386px;
+    display: block; //https://www.jianshu.com/p/dc590c9b2695
+  }
+  .card-description {
+    height: 158px;
+    padding:20px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+
+    background-color: white;
+    // border:1px solid $font-color-shallow;
+    // border-top-width: 0px;
+    .first-row {
+      display: flex;
+      flex-direction: row;
+      height: 42px;
+      > view {
+        height: 100%;
+        line-height: 42px;
+        font-weight: 600;
+        font-size: 30px;
+        color: $font-color-deep;
+      }
+    }
+    .second-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      >view {
+        font-size:24px;
+        color: $font-color-shallow;
+        line-height: 56px;
+        height:56px;
+      }
+      .second-row-avatar {
+        margin-right: 10px;
+      }
+      .avatar-image {
+        width:56px;
+        height:56px;
+        border-radius: 51%;
+      }
+      .second-row-views, .second-row-likes {
+        display: flex;
+      }
+      .iconfont {
+        font-size:25px;
+        margin-right:10px;
+      }
+      .second-row-views {
+        margin-right: 50px;
+      }
+      .second-row-authorname {
+        flex:1;
+      }
+    }
+  }
+}
+
+
