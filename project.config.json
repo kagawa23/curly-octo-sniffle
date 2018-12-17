@@ -1,15 +1,15 @@
 {
-  "miniprogramRoot": "./dist",
-  "projectname": "juran-taro",
-  "description": "居然设计家小程序",
-  "appid": "wxb3d49abe754d110b",
-  "setting": {
-    "urlCheck": false,
-    "es6": false,
-    "postcss": false,
-    "minified": false,
-    "newFeature": true
-  },
-  "compileType": "miniprogram",
-  "condition": {}
+	"miniprogramRoot": "dist/",
+	"projectname": "juran-taro",
+	"description": "居然设计家小程序",
+	"appid": "wxe3467825c31659ae",
+	"setting": {
+		"urlCheck": false,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"condition": {}
 }

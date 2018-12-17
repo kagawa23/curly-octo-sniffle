@@ -55,8 +55,7 @@ export default class Index extends Component {
   componentDidHide() {}
 
   render() {
-    const { designs, offset } = this.state;
-    // const height = offset * (386 + 58 + 40);
+    const { designs } = this.state;
     const windowHeight = res.windowHeight;
     console.log(windowHeight);
     return (

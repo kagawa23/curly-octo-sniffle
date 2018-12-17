@@ -54,6 +54,7 @@ export default class Index extends Component {
       designCover
     } = this.state;
     return (
+      <View className='design-detail'>
       <View className='design-detail-header'>
         <Image className='cover-image' src={designCover} />
         <View className='decoration-type'>{decorationType}</View>
@@ -61,6 +62,7 @@ export default class Index extends Component {
           <View className='iconfont icon-Rotate-Camera' />
           全屋漫游
         </View>
+      </View>
       </View>
     );
   }
