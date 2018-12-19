@@ -2,6 +2,7 @@ import Taro, {
   Component,
   startFacialRecognitionVerifyAndUploadVideo
 } from "@tarojs/taro";
+import { AtAccordion, AtIcon } from 'taro-ui'
 import { View, Text, ScrollView, Image, Icon } from "@tarojs/components";
 // import { fetchDesigns } from "../../io/request";
 // import Card from "../../components/designCard";
@@ -17,7 +18,7 @@ export default class Index extends Component {
   }
 
   componentWillMount() {
-    console.log(this.$router.params); // 输出 { id: 2, type: 'test' }
+    // console.log(this.$router.params); // 输出 { id: 2, type: 'test' }
     const {
       designCover,
       designName,
@@ -59,10 +60,25 @@ export default class Index extends Component {
         <Image className='cover-image' src={designCover} />
         <View className='decoration-type'>{decorationType}</View>
         <View className='click-button'>
-          <View className='iconfont icon-Rotate-Camera' />
+            <View className='iconfont icon-rotate-Camera' />
           全屋漫游
         </View>
       </View>
+      <View className='design-description'>
+          <View className='first-row'>{designName}</View>
+          <View className='second-row'>
+              <View className='second-row-avatar'>
+                <Image src={avatar} className='avatar-image' />
+              </View>
+              <View className='second-row-authorname'>{designerName}</View>
+              <AtAccordion
+                onClick={this.onClick.bind(this)}
+                title='标题一'
+              >
+              <View>hhhhhhhhhhhhhh</View>
+              </AtAccordion>
+          </View>
+        </View>
       </View>
     );
   }
