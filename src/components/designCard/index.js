@@ -66,12 +66,12 @@ class Card extends Component {
             </View>
             <View className='second-row-authorname'>{designerName}</View>
             <View className='second-row-views'>
-              <View className='iconfont icon-eye' />
+              <View className='iconfont iconfont-eye' />
               {"  "}
               {browseCount}
             </View>
             <View className='second-row-likes'>
-              <View className='iconfont icon-thumbup' />
+              <View className='iconfont iconfont-thumbup' />
               {"  "}
               {favoriteCount}
             </View>
