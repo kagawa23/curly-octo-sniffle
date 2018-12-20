@@ -1,11 +1,16 @@
 import Taro, {
   Component,
-  startFacialRecognitionVerifyAndUploadVideo
 } from "@tarojs/taro";
 import { AtAccordion, AtIcon } from 'taro-ui'
 import { View, Text, ScrollView, Image, Icon } from "@tarojs/components";
+import withShare from '../../components/withShare';
 import "./style.scss";
 
+@withShare({
+  title: '可设置分享标题', 
+  imageUrl: '可设置分享图片路径', 
+  path: '可设置分享路径'
+})
 export default class Index extends Component {
   config = {
     navigationBarTitleText: "案例详情"
@@ -42,6 +47,8 @@ export default class Index extends Component {
   componentDidShow() {}
 
   componentDidHide() {}
+
+  $setSharePath = () => 'pages/designDetail/index'
 
   render() {
     const {
