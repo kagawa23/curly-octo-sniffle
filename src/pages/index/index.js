@@ -4,7 +4,7 @@ import Taro, {
 } from "@tarojs/taro";
 import { View, Text, ScrollView, Image, Icon } from "@tarojs/components";
 import { fetchDesigns } from "../../io/request";
-import Card from "../../components/designCard";
+import Card from "./components/designCard";
 import "./index.scss";
 
 const FIXED_QUANTITY = 15;

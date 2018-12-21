@@ -44,20 +44,19 @@
   background-color:white;
   height:168x;
   padding:24px 32px;
+
+
   .first-row {
     color: $font-color-deep;
     font-size:34px;
     font-weight: 500;
   }
-  .second-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    >view {
-      font-size:24px;
-      color: $font-color-shallow;
-      line-height: 56px;
-      height:56px;
+    .author-section {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top:20px;
+      left:10px;
     }
     .second-row-avatar {
       margin-right: 10px;
@@ -67,19 +66,16 @@
       height:56px;
       border-radius: 51%;
     }
-    .second-row-views, .second-row-likes {
-      color: $font-color-shallower;
-      display: flex;
-    }
-    .iconfont {
-      font-size:25px;
-      margin-right:10px;
-    }
     .second-row-views {
       margin-right: 50px;
     }
     .second-row-authorname {
       flex:1;
+    }
+
+  .accordion-close {
+    .at-accordion__title {
+      text-align: right;
     }
   }
 }

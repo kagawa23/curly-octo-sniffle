@@ -1,7 +1,8 @@
 import Taro, {
   Component,
 } from "@tarojs/taro";
-import { AtAccordion, AtIcon } from 'taro-ui'
+import { AtAccordion, AtIcon } from 'taro-ui';
+import Accordion from './accordion';
 import { View, Text, ScrollView, Image, Icon } from "@tarojs/components";
 import withShare from '../../components/withShare';
 import "./style.scss";
@@ -17,7 +18,10 @@ export default class Index extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showDesignDescription: false,
+    };
+    this.showDesignDescriptionToggle = ()=> this.setState(({showDesignDescription})=>({ showDesignDescription:!showDesignDescription  }));
   }
 
   componentWillMount() {
@@ -57,7 +61,8 @@ export default class Index extends Component {
       avatar,
       assetId,
       decorationType,
-      designCover
+      designCover,
+      showDesignDescription,
     } = this.state;
     return (
       <View className='design-detail'>
@@ -71,20 +76,18 @@ export default class Index extends Component {
       </View>
       <View className='design-description'>
           <View className='first-row'>{designName}</View>
-          <View className='second-row'>
+          <Accordion title='整体理念' renderHead={
               <View className='author-section'>
-                <View className='second-row-avatar'>
-                  <Image src={avatar} className='avatar-image' />
-                </View>
-                <View className='second-row-authorname'>{designerName}</View>
-              </View>
-              <AtAccordion
-                onClick={this.onClick.bind(this)}
-                title='标题一'
-              >
-              <View>hhhhhhhhhhhhhh</View>
-              </AtAccordion>
-          </View>
+                   <View className='second-row-avatar'>
+                   <Image src={avatar} className='avatar-image' />
+                 </View>
+                 <View className='second-row-authorname'>{designerName}</View>
+                 </View>} 
+          >
+            <View className='accordion-body'>
+               <Text>Hello world!</Text>
+             </View> 
+          </Accordion>
         </View>
       </View>
     );

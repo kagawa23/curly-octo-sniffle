@@ -1,0 +1,33 @@
+@import '../../../variable.scss';
+.zc-accordion  {
+    position: relative;
+    height: auto;
+    .at-accordion__title {
+        text-align: right;
+      }
+    >view {
+      font-size:24px;
+      color: $font-color-shallow;
+    }
+    .author-section {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top:20px;
+      left:10px;
+    }
+    .second-row-avatar {
+      margin-right: 10px;
+    }
+    .avatar-image {
+      width:56px;
+      height:56px;
+      border-radius: 51%;
+    }
+    .second-row-authorname {
+      flex:1;
+    }
+  }
+  .at-accordion__title {
+    text-align: right;
+  }
