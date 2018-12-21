@@ -18,7 +18,7 @@ class Accordion extends Component {
     render() {
         const { showDesignDescription } = this.state; 
         return (          
-        <View className={`zc-accordion ${showDesignDescription? 'accordion-on':'accordion-close'}`}>
+        <View className={`zc-accordion ${showDesignDescription? 'accordion-open':'accordion-close'}`}>
         {showDesignDescription? null: this.props.renderHead}
              <AtAccordion
                title='整体理念'

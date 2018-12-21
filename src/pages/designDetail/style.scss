@@ -72,8 +72,15 @@
     .second-row-authorname {
       flex:1;
     }
-
+    .at-accordion__header {
+      padding-left: 0px;
+    }
   .accordion-close {
+    .at-accordion__title {
+      text-align: right;
+    }
+  }
+  .accordion-open {
     .at-accordion__title {
       text-align: right;
     }
