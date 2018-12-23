@@ -91,6 +91,7 @@ export default class Index extends Component {
         <DesignHead
           data={{ designName, avatar, designerName, designDescription }}
         />
+        <View style={{ height: "56rpx", backgroundColor: "red" }} />
       </View>
     );
   }

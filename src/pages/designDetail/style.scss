@@ -38,31 +38,14 @@
       font-size: 40px;
     }
   }
-}
-  .at-accordion{
-    .at-accordion__header {
-      padding-left: 0px;
-    }
-  }
-
-
-
   .accordion-close {
-    .at-accordion__title {
-      text-align: right;
-      color: $font-color-shallower;
-      font-size:26px;
+    .accoridon-control {
+      position: absolute;
+      right:0px;
+      bottom:0px;
     }
     .at-icon-chevron-down {
       font-size: 24px !important;
     }
   }
-
-  .accordion-open {
-    .at-accordion__title {
-      text-align: left;
-      color:$font-color-deep;
-      font-weight:$font-weight-bold;
-      font-size:34px;
-    }
-  }
+}

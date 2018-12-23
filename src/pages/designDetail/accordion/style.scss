@@ -27,7 +27,13 @@
     .second-row-authorname {
       flex:1;
     }
-    // .accordion-text {
-    //   font-size: 26px;
-    // }
-  }
+    .accordion-main {
+      position: relative;
+    }
+    .accoridon-control {
+      transition: transform 0.2s;
+    }
+    .accoridon-control {
+      line-height: 56px;
+    }
+}

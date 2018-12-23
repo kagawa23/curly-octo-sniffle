@@ -2,7 +2,6 @@
 
 .design-description {
   background-color:white;
-  height:168px;
   padding:24px 32px;
 
 
@@ -12,11 +11,9 @@
     font-weight: $font-weight-bold;
   }
     .author-section {
-      position: absolute;
       display: flex;
       align-items: center;
-      top:20px;
-      left:10px;
+      margin-top:16px;
     }
     .second-row-avatar {
       margin-right: 10px;
@@ -35,7 +32,8 @@
     .accordion-body {
       color:$font-color-deep;
       font-size: 26px;
-      font-weight: $font-weight-bold;
+      font-weight: 'normal';
       line-height: 40px;
+      margin-top:24px;
     }
   }

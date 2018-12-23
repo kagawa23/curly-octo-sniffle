@@ -1,5 +1,4 @@
 import Taro, { Component } from "@tarojs/taro";
-import { AtAccordion, AtIcon } from "taro-ui";
 import Accordion from "../accordion";
 
 import { View, Text, ScrollView, Image, Icon } from "@tarojs/components";
@@ -33,26 +32,25 @@ class DesignHead extends Component {
     const {
       data: { designName, avatar, designerName, designDescription }
     } = this.props;
-    if (!designDescription) return null;
     return (
       <View className='design-description'>
-        {hideDesignName ? null : (
-          <View className='first-row'>{designName}</View>
-        )}
         <Accordion
           title='整体理念'
           renderHead={
-            <View
-              className='author-section'
-              onClick={this.clickAuthor.bind(this)}
-            >
-              <View className='second-row-avatar'>
-                <Image src={avatar} className='avatar-image' />
+            <View>
+              <View className='first-row'>{designName}</View>
+              <View
+                className='author-section'
+                onClick={this.clickAuthor.bind(this)}
+              >
+                <View className='second-row-avatar'>
+                  <Image src={avatar} className='avatar-image' />
+                </View>
+                <View className='second-row-authorname'>{designerName}</View>
               </View>
-              <View className='second-row-authorname'>{designerName}</View>
             </View>
           }
-          onClick={this.onClick}
+          disabled={!designDescription}
         >
           <View className='accordion-body'>{designDescription}</View>
         </Accordion>
