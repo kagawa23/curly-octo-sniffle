@@ -1,9 +1,8 @@
-@import '../../../variable.scss';
-@import "../../../iconfont.scss";
+@import '../../variable.scss';
 
 .card {
   border-radius: 8px;
-  border:1px solid $border-color;
+  border:1px solid $font-color-shallow;
   margin-bottom:40px;
   .card-image {
     border-top-left-radius: 8px;
@@ -21,6 +20,8 @@
     box-sizing: border-box;
 
     background-color: white;
+    // border:1px solid $font-color-shallow;
+    // border-top-width: 0px;
     .first-row {
       display: flex;
       flex-direction: row;
@@ -52,7 +53,6 @@
         border-radius: 51%;
       }
       .second-row-views, .second-row-likes {
-        color: $font-color-shallower;
         display: flex;
       }
       .iconfont {
@@ -68,6 +68,5 @@
     }
   }
 }
-
 
 

@@ -1,0 +1,41 @@
+@import '../../../variable.scss';
+
+.design-description {
+  background-color:white;
+  height:168px;
+  padding:24px 32px;
+
+
+  .first-row {
+    color: $font-color-deep;
+    font-size:34px;
+    font-weight: $font-weight-bold;
+  }
+    .author-section {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top:20px;
+      left:10px;
+    }
+    .second-row-avatar {
+      margin-right: 10px;
+    }
+    .avatar-image {
+      width:56px;
+      height:56px;
+      border-radius: 51%;
+    }
+    .second-row-views {
+      margin-right: 50px;
+    }
+    .second-row-authorname {
+      flex:1;
+    }
+    .accordion-body {
+      color:$font-color-deep;
+      font-size: 26px;
+      font-weight: $font-weight-bold;
+      line-height: 40px;
+    }
+  }

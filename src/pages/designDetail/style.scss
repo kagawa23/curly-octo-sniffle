@@ -39,50 +39,30 @@
     }
   }
 }
-
-.design-description {
-  background-color:white;
-  height:168x;
-  padding:24px 32px;
-
-
-  .first-row {
-    color: $font-color-deep;
-    font-size:34px;
-    font-weight: 500;
-  }
-    .author-section {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      top:20px;
-      left:10px;
-    }
-    .second-row-avatar {
-      margin-right: 10px;
-    }
-    .avatar-image {
-      width:56px;
-      height:56px;
-      border-radius: 51%;
-    }
-    .second-row-views {
-      margin-right: 50px;
-    }
-    .second-row-authorname {
-      flex:1;
-    }
+  .at-accordion{
     .at-accordion__header {
       padding-left: 0px;
     }
+  }
+
+
+
   .accordion-close {
     .at-accordion__title {
       text-align: right;
+      color: $font-color-shallower;
+      font-size:26px;
+    }
+    .at-icon-chevron-down {
+      font-size: 24px !important;
     }
   }
+
   .accordion-open {
     .at-accordion__title {
-      text-align: right;
+      text-align: left;
+      color:$font-color-deep;
+      font-weight:$font-weight-bold;
+      font-size:34px;
     }
   }
-}
