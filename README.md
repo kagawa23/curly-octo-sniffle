@@ -6,3 +6,5 @@ npm run dev:weapp
 
 1. iconfont unicode<900
 2. 自定义组件样式仅在组件内部生效
+
+行间样式靠谱一些

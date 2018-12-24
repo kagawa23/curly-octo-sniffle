@@ -16,7 +16,6 @@ const accordionClose = {
     fontColor: fontColorShallower
   },
   accordionIcon: {
-    transform: "rotate(0)",
     fontColor: fontColorShallower,
     fontSize: "14px"
   }
@@ -32,7 +31,6 @@ const accordionOpen = {
     fontSize: "34rpx",
     fontWeight: fontWeightBold,
     fontColor: fontColorDeep
-    // lineHeight: "48rpx"
   },
   accordionIcon: {
     transform: "rotate(180)",
@@ -44,14 +42,14 @@ const accordionOpen = {
 class Accordion extends Component {
   constructor(props) {
     super(props);
-    this.state = { showDesignDescription: false };
+    this.state = { isAccordionOpen: false };
     this.accordionToggle = () =>
       this.setState(({ isAccordionOpen }) => ({
         isAccordionOpen: !isAccordionOpen
       }));
   }
   render() {
-    const { disabled } = this.props;
+    const { disabled, buttonStyle, title } = this.props;
     const { isAccordionOpen } = this.state;
     const styles = isAccordionOpen ? accordionOpen : accordionClose;
     return (
@@ -65,10 +63,10 @@ class Accordion extends Component {
           {disabled ? null : (
             <View
               className='accoridon-control'
-              style={styles.accoridonControl}
+              style={{...styles.accoridonControl, ...buttonStyle}}
               onClick={this.accordionToggle}
             >
-              整体理念
+              {title}
               <AtIcon
                 prefixClass='at-icon'
                 value={isAccordionOpen ? "chevron-up" : "chevron-down"}

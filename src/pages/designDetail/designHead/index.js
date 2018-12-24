@@ -10,17 +10,7 @@ class DesignHead extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {
-      hideDesignName: false
-    };
-    this.onClick = () =>
-      this.setState(({ hideDesignName }) => ({
-        hideDesignName: !hideDesignName
-      }));
-    // this.clickAuthor = e => {
-    //   e.stopPropagation();
-    //   console.log("add");
-    // };
+    this.state = { };
   }
   clickAuthor(e) {
     e.stopPropagation();
@@ -28,7 +18,6 @@ class DesignHead extends Component {
   }
 
   render() {
-    const hideDesignName = this.state;
     const {
       data: { designName, avatar, designerName, designDescription }
     } = this.props;
@@ -51,6 +40,7 @@ class DesignHead extends Component {
             </View>
           }
           disabled={!designDescription}
+          buttonStyle={{lineHeight:'56rpx'}}
         >
           <View className='accordion-body'>{designDescription}</View>
         </Accordion>
