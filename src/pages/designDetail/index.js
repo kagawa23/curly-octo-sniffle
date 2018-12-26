@@ -1,27 +1,26 @@
-import Taro, { Component } from "@tarojs/taro";
-import { AtAccordion, AtIcon } from "taro-ui";
-import { CategoryCard } from './categoryCard'
-import DesignHead from "./designHead";
+import Taro, { Component } from '@tarojs/taro';
+import { AtAccordion, AtIcon } from 'taro-ui';
+import { CategoryCard } from './categoryCard';
+import DesignHead from './designHead';
 import SpaceCard from './spaceCard';
-import { View, Text, ScrollView, Image, Icon } from "@tarojs/components";
-import withShare from "../../components/withShare";
-import { fetchDesignDetail } from "../../io/request";
-import {backgroundColor as bgColor} from '../../constants';
-import "./style.scss";
+import { View, Text, ScrollView, Image, Icon } from '@tarojs/components';
+import withShare from '../../components/withShare';
+import { fetchDesignDetail } from '../../io/request';
+import { backgroundColor as bgColor } from '../../constants';
+import './style.scss';
 
 @withShare({
-  title: "可设置分享标题",
-  imageUrl: "可设置分享图片路径",
-  path: "可设置分享路径"
+  title: '可设置分享标题',
+  imageUrl: '可设置分享图片路径',
+  path: '可设置分享路径',
 })
 export default class Index extends Component {
   config = {
-    navigationBarTitleText: "案例详情"
+    navigationBarTitleText: '案例详情',
   };
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   async componentWillMount() {
@@ -39,7 +38,7 @@ export default class Index extends Component {
         spaceDetails,
         photo2DUrl,
         aerialUrl,
-        originUser: { name: designerName, avatarUrl: avatar }
+        originUser: { name: designerName, avatarUrl: avatar },
       } = data;
       this.setState({
         designName,
@@ -48,8 +47,9 @@ export default class Index extends Component {
         assetId,
         decorationType: `${bedRoomNum}${livingRoomNum}${bathRoomNum}`,
         designCover,
-        designDescription, spaceDetails,
-        floorplanUrl:photo2DUrl,
+        designDescription,
+        spaceDetails,
+        floorplanUrl: photo2DUrl,
         aerialUrl,
       });
     }
@@ -63,7 +63,7 @@ export default class Index extends Component {
 
   componentDidHide() {}
 
-  $setSharePath = () => "pages/designDetail/index";
+  $setSharePath = () => 'pages/designDetail/index';
 
   render() {
     const {
@@ -79,16 +79,16 @@ export default class Index extends Component {
       floorplanUrl,
     } = this.state;
     return (
-      <View className='design-detail'>
-        <View className='design-detail-header'>
-          <Image className='cover-image' src={designCover} />
-          <View className='decoration-type'>{decorationType}</View>
-          <View className='click-button'>
+      <View className="design-detail">
+        <View className="design-detail-header">
+          <Image className="cover-image" src={designCover} />
+          <View className="decoration-type">{decorationType}</View>
+          <View className="click-button">
             <AtIcon
-              prefixClass='iconfont'
-              value='camera'
-              size='20'
-              color='white'
+              prefixClass="iconfont"
+              value="camera"
+              size="20"
+              color="white"
             />
             全屋漫游
           </View>
@@ -96,20 +96,30 @@ export default class Index extends Component {
         <DesignHead
           data={{ designName, avatar, designerName, designDescription }}
         />
-        {floorplanUrl ?<CategoryCard head='户型图' categoryStyle={{backgroundColor:'white'}}>
-          <Image
-            src={floorplanUrl} 
-          />
-        </CategoryCard>:null}
-       { aerialUrl ? <CategoryCard head='鸟瞰图' categoryStyle={{backgroundColor:'white'}}>
-          <Image style={{width:'100%'}}
-            src={aerialUrl} 
-          />
-        </CategoryCard>:null}
-        <CategoryCard head='案例空间' categoryStyle={{backgroundColor:bgColor}}>
-        {
-          spaceDetails && spaceDetails.map(space=><SpaceCard key={`${assetId}/${space.roomId}`} space={space} />)
-        }
+        {floorplanUrl ? (
+          <CategoryCard
+            head="户型图"
+            categoryStyle={{ backgroundColor: 'white' }}
+          >
+            <Image src={floorplanUrl} />
+          </CategoryCard>
+        ) : null}
+        {aerialUrl ? (
+          <CategoryCard
+            head="鸟瞰图"
+            categoryStyle={{ backgroundColor: 'white' }}
+          >
+            <Image style={{ width: '100%' }} src={aerialUrl} />
+          </CategoryCard>
+        ) : null}
+        <CategoryCard
+          head="案例空间"
+          categoryStyle={{ backgroundColor: bgColor }}
+        >
+          {spaceDetails &&
+            spaceDetails.map(space => (
+              <SpaceCard key={`${assetId}/${space.roomId}`} space={space} />
+            ))}
         </CategoryCard>
       </View>
     );

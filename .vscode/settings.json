@@ -1,4 +1,6 @@
 {
   "files.autoSave": "onFocusChange",
-  "prettier.disableLanguages": ["scss"]
+  "prettier.disableLanguages": [
+    "scss"
+  ],
 }
