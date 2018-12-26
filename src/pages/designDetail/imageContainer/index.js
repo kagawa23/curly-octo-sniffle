@@ -24,6 +24,7 @@ class ImageContainer extends Component {
       >
         <Image
           src={url}
+          mode="aspectFill"
           style={{
             width: '100%',
             height: '100%',
