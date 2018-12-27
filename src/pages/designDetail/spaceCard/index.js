@@ -1,8 +1,13 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, ScrollView, Image, Icon } from '@tarojs/components';
-import { fontColorShallow, fontWeightBold } from '../../../constants';
+import {
+  fontColorShallow,
+  fontWeightBold,
+  roomTypeMap,
+} from '../../../constants';
 import Accordion from '../accordion';
 import ImageGallery from '../imageGallery';
+import PanoCard from '../panoCard';
 
 import './style.scss';
 
@@ -50,20 +55,18 @@ class Card extends Component {
                 fontSize: '30rpx',
               }}
             >
-              {roomTypeCode}
+              {roomTypeMap[roomTypeCode]}
             </View>
           }
           disabled={!description}
           buttonStyle={{ lineHeight: '42rpx' }}
+          accordionStyle={{ marginBottom: '24rpx' }}
         >
           <View className="accordion-body">{description}</View>
-          {/* {panoramas.map(p => (
-            <Pano key={p.id} />
-          ))} */}
-          {/* {images.map(i => (
-            <ImageGallery key={i.id} />
-          ))} */}
         </Accordion>
+        {panoramas.map(p => (
+          <PanoCard key={p.id} coverUrl={p.coverUrl} />
+        ))}
         <ImageGallery list={images} />
       </View>
     );

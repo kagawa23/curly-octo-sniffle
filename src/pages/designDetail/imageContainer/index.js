@@ -20,6 +20,7 @@ class ImageContainer extends Component {
           paddingTop: `${100 * aspectRatio}%`,
           height: 0,
           position: 'relative',
+          marginBottom: '16rpx',
         }}
       >
         <Image
@@ -31,6 +32,7 @@ class ImageContainer extends Component {
             position: 'absolute',
             left: '0rpx',
             top: '0rpx',
+            borderRadius: '8rpx',
           }}
         />
         {this.props.children}

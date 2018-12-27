@@ -2,12 +2,7 @@ import Taro, { Component } from '@tarojs/taro';
 import { View, Text, ScrollView, Image, Icon } from '@tarojs/components';
 import { aspectRatios } from '../../../constants';
 import { ImageContainer } from '../imageContainer';
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-}
+import { getRandomInt } from '../../../utils';
 
 class ImageGalllery extends Component {
   static defaultProps = {

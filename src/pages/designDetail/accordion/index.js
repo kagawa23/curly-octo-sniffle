@@ -49,7 +49,7 @@ class Accordion extends Component {
       }));
   }
   render() {
-    const { disabled, buttonStyle, title } = this.props;
+    const { disabled, buttonStyle, title, accordionStyle } = this.props;
     const { isAccordionOpen } = this.state;
     const styles = isAccordionOpen ? accordionOpen : accordionClose;
     return (
@@ -57,6 +57,7 @@ class Accordion extends Component {
         className={`zc-accordion ${
           isAccordionOpen ? 'accordion-open' : 'accordion-close'
         }`}
+        style={accordionStyle}
       >
         <View className="accordion-main">
           {isAccordionOpen ? null : this.props.renderHead}

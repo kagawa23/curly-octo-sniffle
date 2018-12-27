@@ -2,7 +2,6 @@
 .design-detail {
   background-color: $background-color;
 }
-
 .design-detail-header {
   position: relative;
   .cover-image {
@@ -17,27 +16,7 @@
     left: 32px;
     font-size: 30px;
   }
-  .click-button {
-    padding-right:24px;
-    padding-left:24px;
-    position: absolute;
-    top:178px;
-    left:268px;
-    width:216px;
-    height:66px;
-    border-radius: 45px;
-    background:rgba(0,0,0,0.6);
-    color:white;
-    font-size: 30px;
-    line-height: 66px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    .icon-rotate-Camera{
-      color:white;
-      font-size: 40px;
-    }
-  }
+
   .accordion-close {
     .accoridon-control {
       position: absolute;

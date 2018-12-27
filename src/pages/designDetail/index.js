@@ -1,8 +1,9 @@
 import Taro, { Component } from '@tarojs/taro';
-import { AtAccordion, AtIcon } from 'taro-ui';
+import { AtIcon } from 'taro-ui';
 import { CategoryCard } from './categoryCard';
 import DesignHead from './designHead';
 import SpaceCard from './spaceCard';
+import PanoButton from './panoButton';
 import { View, Text, ScrollView, Image, Icon } from '@tarojs/components';
 import withShare from '../../components/withShare';
 import { fetchDesignDetail } from '../../io/request';
@@ -83,15 +84,7 @@ export default class Index extends Component {
         <View className="design-detail-header">
           <Image className="cover-image" src={designCover} />
           <View className="decoration-type">{decorationType}</View>
-          <View className="click-button">
-            <AtIcon
-              prefixClass="iconfont"
-              value="camera"
-              size="20"
-              color="white"
-            />
-            全屋漫游
-          </View>
+          <PanoButton>全屋漫游</PanoButton>
         </View>
         <DesignHead
           data={{ designName, avatar, designerName, designDescription }}
