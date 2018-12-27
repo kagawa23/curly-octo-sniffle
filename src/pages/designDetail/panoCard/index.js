@@ -15,13 +15,24 @@ class PanoCard extends Component {
     this.state = {};
     this.ratioIdx = getRandomInt(0, 4);
   }
+
+  onClick() {
+    console.log('onClick');
+    this.props.onClick();
+  }
+
   render() {
     const { coverUrl } = this.props;
     if (!coverUrl) return null;
     return (
-      <ImageContainer url={coverUrl} aspectRatio={aspectRatios[this.ratioIdx]}>
-        <PanoButton>全景图</PanoButton>
-      </ImageContainer>
+      <View className="pano-card" onClick={this.onClick.bind(this)}>
+        <ImageContainer
+          url={coverUrl}
+          aspectRatio={aspectRatios[this.ratioIdx]}
+        >
+          <PanoButton>全景图</PanoButton>
+        </ImageContainer>
+      </View>
     );
   }
 }

@@ -7,27 +7,9 @@ class Card extends Component {
     design: {},
   };
   onClick() {
-    const {
-      assetId,
-      designCover,
-      designerAvatar,
-      designerName,
-      style: designStyle,
-      area,
-      roomType,
-      livingRoom,
-      bathRoom,
-      browseCount,
-      favoriteCount,
-      designName,
-      photo360Url: naviPano,
-    } = this.props.design;
-    const roomTypeInTitle =
-      roomType || livingRoom || bathRoom
-        ? `${roomType}${livingRoom}${bathRoom}`
-        : '';
+    const { assetId } = this.props.design;
     Taro.navigateTo({
-      url: `/pages/designDetail/index?designCover=${designCover}&designName=${designName}&designerName=${designerName}&avatar=${designerAvatar}&assetId=${assetId}&name=${designStyle}·${roomTypeInTitle}·${area}`,
+      url: `/pages/designDetail/index?assetId=${assetId}`,
     });
   }
   render() {

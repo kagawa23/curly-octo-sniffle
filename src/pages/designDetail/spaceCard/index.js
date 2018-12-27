@@ -31,7 +31,15 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.onClickPano = pano => () => {
+      console.log(pano);
+      const { url } = pano;
+      Taro.navigateTo({
+        url: `/pages/pano/index?url=${url}`,
+      });
+    };
   }
+
   render() {
     const {
       space: { description, renderImgs, roomTypeCode },
@@ -39,7 +47,8 @@ class Card extends Component {
     const { imgs: images = [], panos: panoramas = [] } = filterByTypes(
       renderImgs,
     );
-    // console.log(images, panoramas);
+    console.log(images, panoramas);
+    console.log(description);
     if (images.length === 0 && panoramas.length === 0) return null;
     return (
       <View className="space-card">

@@ -1,7 +1,4 @@
-import Taro, {
-  Component,
-  startFacialRecognitionVerifyAndUploadVideo,
-} from '@tarojs/taro';
+import Taro, { Component } from '@tarojs/taro';
 import { View, Text, ScrollView, Image, Icon } from '@tarojs/components';
 import { fetchDesigns } from '../../io/request';
 import Card from './designCard';

@@ -1,9 +1,10 @@
-import Taro, { Component } from "@tarojs/taro";
-import Index from "./pages/index";
-import "@tarojs/async-await";
+import Taro, { Component } from '@tarojs/taro';
+import '@tarojs/async-await';
 
-import "./app.scss";
-import "./iconfont.scss";
+import Index from './pages/index';
+
+import './app.scss';
+import './iconfont.scss';
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -12,13 +13,17 @@ import "./iconfont.scss";
 
 class App extends Component {
   config = {
-    pages: ["pages/index/index", "pages/designDetail/index"],
+    pages: [
+      'pages/index/index',
+      'pages/designDetail/index',
+      'pages/pano/index',
+    ],
     window: {
-      backgroundTextStyle: "light",
-      navigationBarBackgroundColor: "#fff",
-      navigationBarTitleText: "WeChat",
-      navigationBarTextStyle: "black"
-    }
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'black',
+    },
   };
 
   componentDidMount() {}
@@ -36,4 +41,4 @@ class App extends Component {
   }
 }
 
-Taro.render(<App />, document.getElementById("app"));
+Taro.render(<App />, document.getElementById('app'));
