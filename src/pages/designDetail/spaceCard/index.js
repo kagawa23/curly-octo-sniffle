@@ -39,7 +39,8 @@ class Card extends Component {
     const { imgs: images = [], panos: panoramas = [] } = filterByTypes(
       renderImgs,
     );
-    console.log(images, panoramas);
+    // console.log(images, panoramas);
+    if (images.length === 0 && panoramas.length === 0) return null;
     return (
       <View className="space-card">
         <Accordion

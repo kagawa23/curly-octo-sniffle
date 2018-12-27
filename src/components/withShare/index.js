@@ -3,13 +3,12 @@ import Taro from '@tarojs/taro';
 import defaultShareImg from '../../assets/share.jpg';
 
 function withShare(opts = {}) {
-  
   // 设置默认
   const defalutPath = 'pages/index/index?';
   const defalutTitle = '默认标题';
   const defaultImageUrl = defaultShareImg;
 
-  return function demoComponent(Component) {      
+  return function demoComponent(Component) {
     // redux里面的用户数据
     // @connect(({ user }) => ({
     //   userInfo: user.userInfo
@@ -17,7 +16,7 @@ function withShare(opts = {}) {
     class WithShare extends Component {
       async componentWillMount() {
         wx.showShareMenu({
-          withShareTicket: true
+          withShareTicket: true,
         });
 
         if (super.componentWillMount) {
@@ -30,12 +29,12 @@ function withShare(opts = {}) {
         // const { userInfo } = this.props;
 
         let { title, imageUrl, path = null } = opts;
-		
+
         // 从继承的组件获取配置
         if (this.$setSharePath && typeof this.$setSharePath === 'function') {
           path = this.$setSharePath();
         }
-		
+
         // 从继承的组件获取配置
         if (this.$setShareTitle && typeof this.$setShareTitle === 'function') {
           title = this.$setShareTitle();
@@ -52,15 +51,15 @@ function withShare(opts = {}) {
         if (!path) {
           path = defalutPath;
         }
-		
+
         // 每条分享都补充用户的分享id
         // 如果path不带参数，分享出去后解析的params里面会带一个{''： ''}
-        const sharePath = `${path}`; 
+        const sharePath = `${path}`;
 
         return {
           title: title || defalutTitle,
           path: sharePath,
-          imageUrl: imageUrl || defaultImageUrl
+          imageUrl: imageUrl || defaultImageUrl,
         };
       }
 
