@@ -8,7 +8,7 @@ import PanoButton from '../panoButton';
 
 class PanoCard extends Component {
   static defaultProps = {
-    coverUrl: '',
+    pano: {},
   };
   constructor(props) {
     super(props);
@@ -17,12 +17,18 @@ class PanoCard extends Component {
   }
 
   onClick() {
-    console.log('onClick');
-    this.props.onClick();
+    const {
+      pano: { photo360Url },
+    } = this.props;
+    Taro.navigateTo({
+      url: `/pages/pano/index?url=${encodeURIComponent(photo360Url)}`,
+    });
   }
 
   render() {
-    const { coverUrl } = this.props;
+    const {
+      pano: { coverUrl },
+    } = this.props;
     if (!coverUrl) return null;
     return (
       <View className="pano-card" onClick={this.onClick.bind(this)}>

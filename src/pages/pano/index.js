@@ -1,8 +1,14 @@
 import Taro, { Component } from '@tarojs/taro';
 import { WebView } from '@tarojs/components';
+import withShare from '../../components/withShare';
 
 import './index.scss';
 
+@withShare({
+  title: '可设置分享标题',
+  imageUrl: '可设置分享图片路径',
+  path: '可设置分享路径',
+})
 export default class Index extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +19,7 @@ export default class Index extends Component {
 
   componentWillMount() {
     const { url } = this.$router.params;
-    this.setState({ url: url });
+    this.setState({ url: decodeURIComponent(url) });
   }
 
   componentDidMount() {}
@@ -23,6 +29,11 @@ export default class Index extends Component {
   componentDidShow() {}
 
   componentDidHide() {}
+
+  $setSharePath = () => {
+    const { url } = this.$router.params;
+    return `/pages/pano/index?url=${encodeURIComponent(url)}`;
+  };
 
   render() {
     const { url } = this.state;

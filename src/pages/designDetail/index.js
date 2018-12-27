@@ -5,6 +5,7 @@ import DesignHead from './designHead';
 import SpaceCard from './spaceCard';
 import PanoButton from './panoButton';
 import { View, Text, ScrollView, Image, Icon } from '@tarojs/components';
+import { get as getGlobalData } from '../../globalData';
 import withShare from '../../components/withShare';
 import { fetchDesignDetail } from '../../io/request';
 import { backgroundColor as bgColor } from '../../constants';
@@ -65,7 +66,9 @@ export default class Index extends Component {
   componentDidHide() {}
 
   $setSharePath = () => 'pages/designDetail/index';
-
+  triggerStickyEvent() {
+    console.log('sticky event');
+  }
   render() {
     const {
       designName,
@@ -79,8 +82,18 @@ export default class Index extends Component {
       aerialUrl,
       floorplanUrl,
     } = this.state;
+    const windowHeight = getGlobalData('window_height');
+    const pixelRatio = getGlobalData('pixel_ratio');
     return (
-      <View className="design-detail">
+      <ScrollView
+        className="design-detail"
+        style={`height:${windowHeight}px`}
+        scrollY
+        scrollWithAnimation
+        scrollTop="0"
+        upperThreshold={`${422 / pixelRatio}`}
+        onScrollToUpper={this.triggerStickyEvent.bind(this)}
+      >
         <View className="design-detail-header">
           <Image className="cover-image" src={designCover} />
           <View className="decoration-type">{decorationType}</View>
@@ -114,7 +127,7 @@ export default class Index extends Component {
               <SpaceCard key={`${assetId}/${space.roomId}`} space={space} />
             ))}
         </CategoryCard>
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro';
 import '@tarojs/async-await';
 
 import Index from './pages/index';
-
+import { set as setGlobalData, get as getGlobalData } from './globalData';
 import './app.scss';
 import './iconfont.scss';
 // 如果需要在 h5 环境中开启 React Devtools
@@ -34,6 +34,16 @@ class App extends Component {
 
   componentDidCatchError() {}
 
+  componentWillMount() {
+    this.getSysInfo();
+  }
+  getSysInfo() {
+    const info = Taro.getSystemInfoSync();
+    console.log(info);
+    setGlobalData('window_height', info.windowHeight);
+    setGlobalData('window_width', info.windowWidth);
+    setGlobalData('pixel_ratio', info.pixelRatio);
+  }
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
   render() {

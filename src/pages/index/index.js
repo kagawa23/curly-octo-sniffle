@@ -1,12 +1,14 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, ScrollView, Image, Icon } from '@tarojs/components';
 import { fetchDesigns } from '../../io/request';
+import { get as getGlobalData } from '../../globalData';
+
 import Card from './designCard';
 import './index.scss';
 
 const FIXED_QUANTITY = 15;
 
-const res = wx.getSystemInfoSync();
+// const res = wx.getSystemInfoSync();
 
 export default class Index extends Component {
   config = {
@@ -53,8 +55,8 @@ export default class Index extends Component {
 
   render() {
     const { designs } = this.state;
-    const windowHeight = res.windowHeight;
-    console.log(windowHeight);
+    const windowHeight = getGlobalData('window_height');
+    // console.log(windowHeight);
     return (
       <ScrollView
         className="scrollview"

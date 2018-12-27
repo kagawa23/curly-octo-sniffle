@@ -31,13 +31,6 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.onClickPano = pano => () => {
-      console.log(pano);
-      const { url } = pano;
-      Taro.navigateTo({
-        url: `/pages/pano/index?url=${url}`,
-      });
-    };
   }
 
   render() {
@@ -49,7 +42,7 @@ class Card extends Component {
     );
     console.log(images, panoramas);
     console.log(description);
-    if (images.length === 0 && panoramas.length === 0) return null;
+    if (images.length === 0 && panoramas.length === 0) return <View />;
     return (
       <View className="space-card">
         <Accordion
@@ -75,7 +68,7 @@ class Card extends Component {
           <View className="accordion-body">{description}</View>
         </Accordion>
         {panoramas.map(p => (
-          <PanoCard key={p.id} coverUrl={p.coverUrl} />
+          <PanoCard key={p.id} pano={p} />
         ))}
         <ImageGallery list={images} />
       </View>

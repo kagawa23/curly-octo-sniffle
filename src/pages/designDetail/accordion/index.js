@@ -40,6 +40,12 @@ const accordionOpen = {
 };
 
 class Accordion extends Component {
+  static defaultProps = {
+    disabled: false,
+    buttonStyle: {},
+    title: '',
+    accordionStyle: {},
+  };
   constructor(props) {
     super(props);
     this.state = { isAccordionOpen: false };
@@ -61,7 +67,7 @@ class Accordion extends Component {
       >
         <View className="accordion-main">
           {isAccordionOpen ? null : this.props.renderHead}
-          {disabled ? null : (
+          {!disabled && (
             <View
               className="accoridon-control"
               style={{ ...styles.accoridonControl, ...buttonStyle }}
