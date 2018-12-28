@@ -8,8 +8,6 @@ import './index.scss';
 
 const FIXED_QUANTITY = 15;
 
-// const res = wx.getSystemInfoSync();
-
 export default class Index extends Component {
   config = {
     navigationBarTitleText: '案例列表',
@@ -56,7 +54,6 @@ export default class Index extends Component {
   render() {
     const { designs } = this.state;
     const windowHeight = getGlobalData('window_height');
-    // console.log(windowHeight);
     return (
       <ScrollView
         className="scrollview"
@@ -70,7 +67,6 @@ export default class Index extends Component {
         onScrollToLower={this.onScrollToLower}
       >
         {designs.map(design => {
-          // if (!design) return null;
           const { assetId } = design;
           return <Card key={assetId} design={design} />;
         })}

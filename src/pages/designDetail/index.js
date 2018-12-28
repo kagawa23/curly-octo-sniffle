@@ -1,4 +1,5 @@
 import Taro, { Component } from '@tarojs/taro';
+import memorize from 'lodash.memoize';
 import { AtIcon } from 'taro-ui';
 import { CategoryCard } from './categoryCard';
 import DesignHead from './designHead';
@@ -11,6 +12,19 @@ import { fetchDesignDetail } from '../../io/request';
 import { backgroundColor as bgColor } from '../../constants';
 import './style.scss';
 
+const styles = {
+  stickyHead: {
+    position: 'fixed',
+    top: '0rpx',
+    width: '100%',
+    zIndex: 10,
+    boxSizing: 'border-box',
+  },
+  stickyMarginTop: {
+    mariginTop: '120rpx',
+  },
+};
+
 @withShare({
   title: '可设置分享标题',
   imageUrl: '可设置分享图片路径',
@@ -22,8 +36,10 @@ export default class Index extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {};
-    this.stickyThreshhold = 422/getGlobalData('pixel_ratio');
+    this.state = {
+      isSticky: false,
+    };
+    this.stickyThreshhold = 422 / getGlobalData('pixel_ratio');
   }
 
   async componentWillMount() {
@@ -42,6 +58,7 @@ export default class Index extends Component {
         photo2DUrl,
         aerialUrl,
         originUser: { name: designerName, avatarUrl: avatar },
+        photo360Url,
       } = data;
       this.setState({
         designName,
@@ -54,6 +71,7 @@ export default class Index extends Component {
         spaceDetails,
         floorplanUrl: photo2DUrl,
         aerialUrl,
+        naviPano: photo360Url,
       });
     }
   }
@@ -66,14 +84,39 @@ export default class Index extends Component {
 
   componentDidHide() {}
 
-  $setSharePath = () => 'pages/designDetail/index';
+  $setSharePath = () =>
+    `pages/designDetail/index?assetId=${this.$router.params.assetId}`;
+
+  $setShareTitle = () => this.state.designName;
+
+  $setShareImageUrl = () => this.state.designCover;
+
+  onClickNaviPano() {
+    const { naviPano } = this.state;
+    Taro.navigateTo({
+      url: `/pages/pano/index?url=${encodeURIComponent(naviPano)}`,
+    });
+  }
+
   onScroll(event) {
-    console.log(event);
-    const pixelRatio = getGlobalData('pixel_ratio');
     const {
-      detail: { scrollTop },
+      detail: { scrollTop, deltaY },
     } = event;
-    // if (  ) console.log('sticky event');
+    if (deltaY < 0) {
+      if (
+        this.scrollTopPrev <= this.stickyThreshhold &&
+        scrollTop >= this.stickyThreshhold
+      ) {
+        this.setState({ isSticky: true });
+      }
+    } else if (deltaY > 0) {
+      if (
+        this.scrollTopPrev >= this.stickyThreshhold &&
+        scrollTop <= this.stickyThreshhold
+      ) {
+        this.setState({ isSticky: false });
+      }
+    }
     this.scrollTopPrev = scrollTop;
   }
   render() {
@@ -88,6 +131,8 @@ export default class Index extends Component {
       designDescription,
       aerialUrl,
       floorplanUrl,
+      isSticky,
+      naviPano,
     } = this.state;
     const windowHeight = getGlobalData('window_height');
     return (
@@ -97,42 +142,47 @@ export default class Index extends Component {
         scrollY
         scrollWithAnimation
         scrollTop="0"
-        // upperThreshold={`${422 / pixelRatio}`}
         onScroll={this.onScroll.bind(this)}
       >
-        <View className="design-detail-header">
+        <View
+          className="design-detail-header"
+          onClick={this.onClickNaviPano.bind(this)}
+        >
           <Image className="cover-image" src={designCover} />
           <View className="decoration-type">{decorationType}</View>
-          <PanoButton>全屋漫游</PanoButton>
+          {naviPano && <PanoButton>全屋漫游</PanoButton>}
         </View>
         <DesignHead
           data={{ designName, avatar, designerName, designDescription }}
+          headStyle={isSticky ? styles.stickyHead : {}}
         />
-        {floorplanUrl ? (
+        <View style={isSticky ? styles.stickyMarginTop : {}}>
+          {floorplanUrl ? (
+            <CategoryCard
+              head="户型图"
+              categoryStyle={{ backgroundColor: 'white' }}
+            >
+              <Image src={floorplanUrl} />
+            </CategoryCard>
+          ) : null}
+          {aerialUrl ? (
+            <CategoryCard
+              head="鸟瞰图"
+              categoryStyle={{ backgroundColor: 'white' }}
+            >
+              <Image style={{ width: '100%' }} src={aerialUrl} />
+            </CategoryCard>
+          ) : null}
           <CategoryCard
-            head="户型图"
-            categoryStyle={{ backgroundColor: 'white' }}
+            head="案例空间"
+            categoryStyle={{ backgroundColor: bgColor }}
           >
-            <Image src={floorplanUrl} />
+            {spaceDetails &&
+              spaceDetails.map(space => (
+                <SpaceCard key={`${assetId}/${space.roomId}`} space={space} />
+              ))}
           </CategoryCard>
-        ) : null}
-        {aerialUrl ? (
-          <CategoryCard
-            head="鸟瞰图"
-            categoryStyle={{ backgroundColor: 'white' }}
-          >
-            <Image style={{ width: '100%' }} src={aerialUrl} />
-          </CategoryCard>
-        ) : null}
-        <CategoryCard
-          head="案例空间"
-          categoryStyle={{ backgroundColor: bgColor }}
-        >
-          {spaceDetails &&
-            spaceDetails.map(space => (
-              <SpaceCard key={`${assetId}/${space.roomId}`} space={space} />
-            ))}
-        </CategoryCard>
+        </View>
       </ScrollView>
     );
   }

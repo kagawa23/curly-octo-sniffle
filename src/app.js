@@ -5,6 +5,8 @@ import Index from './pages/index';
 import { set as setGlobalData, get as getGlobalData } from './globalData';
 import './app.scss';
 import './iconfont.scss';
+// 生成canvas
+// https://www.jianshu.com/p/6204e9d9b277
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -39,7 +41,7 @@ class App extends Component {
   }
   getSysInfo() {
     const info = Taro.getSystemInfoSync();
-    console.log(info);
+    // console.log(info);
     setGlobalData('window_height', info.windowHeight);
     setGlobalData('window_width', info.windowWidth);
     setGlobalData('pixel_ratio', info.pixelRatio);

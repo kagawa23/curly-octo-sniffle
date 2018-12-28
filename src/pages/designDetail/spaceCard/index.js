@@ -40,11 +40,13 @@ class Card extends Component {
     const { imgs: images = [], panos: panoramas = [] } = filterByTypes(
       renderImgs,
     );
-    console.log(images, panoramas);
-    console.log(description);
-    if (images.length === 0 && panoramas.length === 0) return <View />;
+    // 这边的条件渲染似乎有问题
+    const isEmpty = images.length === 0 && panoramas.length === 0;
     return (
-      <View className="space-card">
+      <View
+        className="space-card"
+        style={{ display: isEmpty ? 'none' : 'block' }}
+      >
         <Accordion
           title="空间描述"
           renderHead={

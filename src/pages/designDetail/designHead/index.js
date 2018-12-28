@@ -7,6 +7,7 @@ import './style.scss';
 class DesignHead extends Component {
   static defaultProps = {
     data: {},
+    headStyle: {},
   };
   constructor(props) {
     super(props);
@@ -20,9 +21,10 @@ class DesignHead extends Component {
   render() {
     const {
       data: { designName, avatar, designerName, designDescription },
+      headStyle,
     } = this.props;
     return (
-      <View className="design-description">
+      <View className="design-description" style={headStyle}>
         <Accordion
           title="整体理念"
           renderHead={
