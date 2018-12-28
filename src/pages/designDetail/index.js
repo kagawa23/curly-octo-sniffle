@@ -23,6 +23,7 @@ export default class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.stickyThreshhold = 422/getGlobalData('pixel_ratio');
   }
 
   async componentWillMount() {
@@ -66,8 +67,14 @@ export default class Index extends Component {
   componentDidHide() {}
 
   $setSharePath = () => 'pages/designDetail/index';
-  triggerStickyEvent() {
-    console.log('sticky event');
+  onScroll(event) {
+    console.log(event);
+    const pixelRatio = getGlobalData('pixel_ratio');
+    const {
+      detail: { scrollTop },
+    } = event;
+    // if (  ) console.log('sticky event');
+    this.scrollTopPrev = scrollTop;
   }
   render() {
     const {
@@ -83,7 +90,6 @@ export default class Index extends Component {
       floorplanUrl,
     } = this.state;
     const windowHeight = getGlobalData('window_height');
-    const pixelRatio = getGlobalData('pixel_ratio');
     return (
       <ScrollView
         className="design-detail"
@@ -91,8 +97,8 @@ export default class Index extends Component {
         scrollY
         scrollWithAnimation
         scrollTop="0"
-        upperThreshold={`${422 / pixelRatio}`}
-        onScrollToUpper={this.triggerStickyEvent.bind(this)}
+        // upperThreshold={`${422 / pixelRatio}`}
+        onScroll={this.onScroll.bind(this)}
       >
         <View className="design-detail-header">
           <Image className="cover-image" src={designCover} />
