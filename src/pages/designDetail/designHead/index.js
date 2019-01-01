@@ -16,6 +16,9 @@ class DesignHead extends Component {
   clickAuthor(e) {
     e.stopPropagation();
     console.log('click author');
+    Taro.navigateTo({
+      url: `/pages/poster/index`,
+    });
   }
 
   render() {

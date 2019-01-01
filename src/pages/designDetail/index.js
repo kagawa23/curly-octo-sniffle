@@ -1,11 +1,16 @@
 import Taro, { Component } from '@tarojs/taro';
-import memorize from 'lodash.memoize';
-import { AtIcon } from 'taro-ui';
 import { CategoryCard } from './categoryCard';
 import DesignHead from './designHead';
 import SpaceCard from './spaceCard';
 import PanoButton from './panoButton';
-import { View, Text, ScrollView, Image, Icon } from '@tarojs/components';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  Icon,
+  Canvas,
+} from '@tarojs/components';
 import { get as getGlobalData } from '../../globalData';
 import withShare from '../../components/withShare';
 import { fetchDesignDetail } from '../../io/request';
@@ -47,6 +52,7 @@ export default class Index extends Component {
     const [err, resp] = await fetchDesignDetail(assetId);
     if (!err) {
       const { data } = resp;
+      console.log(data);
       const {
         bathRoomNum,
         bedRoomNum,
@@ -76,7 +82,9 @@ export default class Index extends Component {
     }
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.drawImage();
+  }
 
   componentWillUnmount() {}
 
@@ -89,7 +97,54 @@ export default class Index extends Component {
 
   $setShareTitle = () => this.state.designName;
 
-  $setShareImageUrl = () => this.state.designCover;
+  drawImage = () => {
+    const ctx = Taro.createCanvasContext('myCanvas');
+    let width = 0;
+    // this.canvasContainer
+    //   .boundingClientRect(rect => {
+    var height = getGlobalData('window_height');
+    // console.log(rect.width);
+
+    width = getGlobalData('window_width') * 0.8;
+    // var left = 0 + 5;
+    ctx.setFillStyle('#fff');
+    ctx.fillRect(0, 0, width, height);
+    ctx.draw(false, () => {
+      Taro.canvasToTempFilePath({
+        canvasId: 'myCanvas',
+        success: res => {
+          // wx.hideLoading();
+          // resolve(res.tempFilePath);
+          this.shareCover = res.tempFilePath;
+        },
+      });
+    });
+  };
+
+  $setShareImageUrl = () => {
+    // const path = await this.drawImage();
+    console.log(this.shareCover);
+    return this.shareCover;
+    // const ctx = Taro.createCanvasContext('myCanvas');
+    // let width = 0;
+    // // this.canvasContainer
+    // //   .boundingClientRect(rect => {
+    // var height = getGlobalData('window_height');
+    // // console.log(rect.width);
+    // width = getGlobalData('window_width') * 0.8;
+    // // var left = 0 + 5;
+    // ctx.setFillStyle('#fff');
+    // ctx.fillRect(0, 0, width, height);
+    // ctx.draw(false, () => {
+    //   Taro.canvasToTempFilePath({
+    //     canvasId: 'myCanvas',
+    //     success: function(res) {
+    //       // wx.hideLoading();
+    //       return res.tempFilePath;
+    //     },
+    //   });
+    // });
+  };
 
   onClickNaviPano() {
     const { naviPano } = this.state;
@@ -182,6 +237,9 @@ export default class Index extends Component {
                 <SpaceCard key={`${assetId}/${space.roomId}`} space={space} />
               ))}
           </CategoryCard>
+        </View>
+        <View style={{ height: 0, overflow: 'hidden' }}>
+          <Canvas canvasId="myCanvas" />
         </View>
       </ScrollView>
     );

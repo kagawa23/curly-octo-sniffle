@@ -3,4 +3,5 @@
   "prettier.disableLanguages": [
     "scss"
   ],
+  "eslint.autoFixOnSave": true
 }

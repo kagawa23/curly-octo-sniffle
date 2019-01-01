@@ -1,3 +1,5 @@
+import Taro from '@tarojs/taro';
+
 const HOST_NAME = 'https://api.homestyler.com';
 
 export function fetchDesigns(offset = 0, limit = 5) {
@@ -21,4 +23,8 @@ export function fetchDesignDetail(assetId) {
       fail: err => resolve([err]),
     });
   });
+}
+
+export function downloadFile(options) {
+  return Taro.downloadFile(options);
 }

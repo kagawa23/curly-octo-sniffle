@@ -1,11 +1,11 @@
 import Taro, { Component } from '@tarojs/taro';
-import { AtAccordion, AtIcon } from 'taro-ui';
+import { AtIcon } from 'taro-ui';
+import { View } from '@tarojs/components';
 import {
   fontColorDeep,
   fontColorShallower,
   fontWeightBold,
 } from '../../../constants';
-import { View, Text, ScrollView, Image, Icon } from '@tarojs/components';
 import './style.scss';
 
 const accordionClose = {
