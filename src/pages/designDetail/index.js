@@ -3,14 +3,8 @@ import { CategoryCard } from './categoryCard';
 import DesignHead from './designHead';
 import SpaceCard from './spaceCard';
 import PanoButton from './panoButton';
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  Icon,
-  Canvas,
-} from '@tarojs/components';
+import ShareCanvas from './shareCanvas';
+import { View, Text, ScrollView, Image, Icon } from '@tarojs/components';
 import { get as getGlobalData } from '../../globalData';
 import withShare from '../../components/withShare';
 import { fetchDesignDetail } from '../../io/request';
@@ -83,7 +77,7 @@ export default class Index extends Component {
   }
 
   componentDidMount() {
-    this.drawImage();
+    // this.drawImage();
   }
 
   componentWillUnmount() {}
@@ -97,24 +91,21 @@ export default class Index extends Component {
 
   $setShareTitle = () => this.state.designName;
 
+  setShareDone({ tempFilePath }) {
+    this.shareCover = tempFilePath;
+  }
+
   drawImage = () => {
     const ctx = Taro.createCanvasContext('myCanvas');
     let width = 0;
-    // this.canvasContainer
-    //   .boundingClientRect(rect => {
     var height = getGlobalData('window_height');
-    // console.log(rect.width);
-
     width = getGlobalData('window_width') * 0.8;
-    // var left = 0 + 5;
     ctx.setFillStyle('#fff');
     ctx.fillRect(0, 0, width, height);
     ctx.draw(false, () => {
       Taro.canvasToTempFilePath({
         canvasId: 'myCanvas',
         success: res => {
-          // wx.hideLoading();
-          // resolve(res.tempFilePath);
           this.shareCover = res.tempFilePath;
         },
       });
@@ -122,28 +113,8 @@ export default class Index extends Component {
   };
 
   $setShareImageUrl = () => {
-    // const path = await this.drawImage();
     console.log(this.shareCover);
     return this.shareCover;
-    // const ctx = Taro.createCanvasContext('myCanvas');
-    // let width = 0;
-    // // this.canvasContainer
-    // //   .boundingClientRect(rect => {
-    // var height = getGlobalData('window_height');
-    // // console.log(rect.width);
-    // width = getGlobalData('window_width') * 0.8;
-    // // var left = 0 + 5;
-    // ctx.setFillStyle('#fff');
-    // ctx.fillRect(0, 0, width, height);
-    // ctx.draw(false, () => {
-    //   Taro.canvasToTempFilePath({
-    //     canvasId: 'myCanvas',
-    //     success: function(res) {
-    //       // wx.hideLoading();
-    //       return res.tempFilePath;
-    //     },
-    //   });
-    // });
   };
 
   onClickNaviPano() {
@@ -238,8 +209,9 @@ export default class Index extends Component {
               ))}
           </CategoryCard>
         </View>
+
         <View style={{ height: 0, overflow: 'hidden' }}>
-          <Canvas canvasId="myCanvas" />
+          <ShareCanvas onSetShareDone={this.setShareDone.bind(this)} />
         </View>
       </ScrollView>
     );
